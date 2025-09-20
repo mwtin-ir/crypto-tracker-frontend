@@ -7,7 +7,7 @@ function MainLayout() {
   return (
     <>
       <Navbar />
-      <div className="py-18 md:py-[60px] bg-gray-200/50 dark:bg-gray-800/20">
+      <div className="pt-18 md:pt-[60px] bg-gray-200/50 dark:bg-gray-800/20">
         <Outlet />
       </div>
       <Footer />

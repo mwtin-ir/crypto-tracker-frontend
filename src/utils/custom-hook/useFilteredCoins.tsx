@@ -37,7 +37,7 @@ export function useFilteredCoins(limit: number = 10) {
     async function getTrend() {
       try {
         const res = await axios.get(
-          `http://localhost:3120/markets/trending?limit=${limit}&currency=TMN`
+          `https://crypto-tracker-backend-xt56.onrender.com/markets/trending?limit=${limit}&currency=TMN`
         );
         setTrending(res.data);
       } catch (err) {

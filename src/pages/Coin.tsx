@@ -59,7 +59,7 @@ function Coin() {
       try {
         setLoading(true);
         const { data } = await axios.get<OldMarket[]>(
-          `http://localhost:3120/coin/${baseAssetParam}`
+          `https://crypto-tracker-backend-xt56.onrender.com/coin/${baseAssetParam}`
         );
 
         const tmnCoin = data.find((coin) =>
@@ -87,8 +87,8 @@ function Coin() {
   }
   console.log(selectedCoin);
   return (
-    <main className="px-2 md:px-0 ">
-      <section className="container mx-auto flex flex-col gap-4 lg:gap-7 ">
+    <main className="px-2 md:px-0  ">
+      <section className="container mx-auto flex flex-col gap-4 lg:gap-7 md:py-12">
         {!loading ? (
           <>
             <div className="flex items-center gap-[1px] lg:gap-[3px]">

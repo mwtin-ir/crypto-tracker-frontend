@@ -16,7 +16,7 @@ const MainHome = () => {
   const { topGainers, newCoins, trending } = useFilteredCoins(5);
   const { loading } = useV1Market();
   return (
-    <main className="w-full min-h-screen bg-[unset]  py-8">
+    <main className="w-full min-h-screen bg-[unset] ">
       <section className="w-full lg:px-16 container mx-auto  px-4 ">
         {!loading && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center  py-12 w-full">

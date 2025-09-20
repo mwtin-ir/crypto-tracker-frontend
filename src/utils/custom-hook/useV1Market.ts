@@ -16,7 +16,7 @@ export function useV1Market() {
       try {
         setLoading(true);
         const res = await axios.get<OldMarket[]>(
-          "http://localhost:3120/api/oldmarkets",
+          "https://crypto-tracker-backend-xt56.onrender.com/api/oldmarkets",
           { signal: controller.signal }
         );
         

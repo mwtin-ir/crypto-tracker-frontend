@@ -9,7 +9,7 @@ function SwiperCard({ symbol }: { symbol: string }) {
   async function getRelated(): Promise<void> {
     try {
       const response = await axios.get(
-        `http://localhost:3120/related/coin/${symbol}`
+        `https://crypto-tracker-backend-xt56.onrender.com/related/coin/${symbol}`
       );
       setRelated(response.data);
       console.log(response.data);

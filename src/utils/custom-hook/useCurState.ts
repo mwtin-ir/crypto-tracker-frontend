@@ -14,7 +14,7 @@ export function useCurrencyStats() {
       try {
         setLoading(true);
         const res = await axios.get<{ result: CryptocurrencyData[] }>(
-          "http://localhost:3120/api/currencies/stats",
+          "https://crypto-tracker-backend-xt56.onrender.com/api/currencies/stats",
           { signal: controller.signal }
         );
         setStats(res.data.result);
