@@ -43,6 +43,14 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       createTheme({
         palette: {
           mode: theme,
+primary:{
+main:theme==="dark" ?"#f7f7f7": "#0a0f1a"
+  
+}
+        },
+
+        typography: {
+          fontFamily: "IRANSansX , Arial , sans-serif",
         },
       }),
     [theme]

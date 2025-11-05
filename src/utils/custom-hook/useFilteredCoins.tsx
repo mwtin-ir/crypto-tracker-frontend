@@ -1,14 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useV1Market } from "./useV1Market";
-import type { OldMarket } from "../types/markets";
-import axios from "axios";
 
 export function useFilteredCoins(limit: number = 10) {
   const { markets } = useV1Market();
 
-  const [trending, setTrending] = useState<(OldMarket & { rank: number })[]>(
-    []
-  );
   const topGainers = useMemo(() => {
     return markets
       .filter(
@@ -33,20 +28,22 @@ export function useFilteredCoins(limit: number = 10) {
       )
       .slice(0, limit);
   }, [markets, limit]);
-  useEffect(() => {
-    async function getTrend() {
-      try {
-        const res = await axios.get(
-          `https://crypto-tracker-backend-xt56.onrender.com/markets/trending?limit=${limit}&currency=TMN`
-        );
-        setTrending(res.data);
-      } catch (err) {
-        console.error("Failed to fetch trending markets:", err);
-      }
-    }
 
-    getTrend();
-  }, [limit]);
+  const trending = useMemo(() => {
+    const trendCoin = markets
+      .filter(
+        (c) =>
+          typeof c.stats?.["24h_ch"] === "number" && c.symbol.includes("TMN")
+      )
+      .sort((a, b) => {
+        const volA = Number(a.stats?.["24h_quoteVolume"] ?? 0);
+        const volB = Number(b.stats?.["24h_quoteVolume"] ?? 0);
+        return volB - volA;
+      })
+      .slice(0, limit);
+
+    return trendCoin;
+  }, [markets, limit]);
 
   const newCoins = useMemo(() => {
     return markets

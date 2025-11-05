@@ -9,6 +9,7 @@ import { useFilteredCoins } from "../../utils/custom-hook/useFilteredCoins";
 import { Link } from "react-router-dom";
 import { useV1Market } from "../../utils/custom-hook/useV1Market";
 import type { OldMarket } from "../../utils/types/markets";
+import { Button } from "@mui/material";
 
 const MainHome = () => {
   const { theme } = useTheme();
@@ -19,10 +20,14 @@ const MainHome = () => {
     <main className="w-full min-h-screen bg-[unset] ">
       <section className="w-full lg:px-16 container mx-auto  px-4 ">
         {!loading && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center  py-12 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 items-center  py-12 w-full">
             <ShowCoinCard title="محبوب ترین ها" hook={trending} />
             <ShowCoinCard title="پر سود ترین‌ ها" hook={topGainers} />
-            <ShowCoinCard title="جد‌ید ترین ارز‌ ها" hook={newCoins} />
+            <ShowCoinCard
+              title="جد‌ید ترین ارز‌ ها"
+              hook={newCoins}
+              className="hidden xl:flex"
+            />
           </div>
         )}
         <div className="grid grid-cols-1  md:grid-cols-[2fr_1fr] gap-8 items-center fade-in">
@@ -55,18 +60,21 @@ const MainHome = () => {
                   <h4 className="text-xl lg:text-2xl font-medium !font-[Irancell1]">
                     ثبت نام
                   </h4>
-                  <div
-                    role="button"
-                    className="bg-green-600 hover:bg-green-700 group flex items-center justify-center gap-2 text-white font-semibold text-lg xl:text-base px-3 py-1 lg:px-4 lg:py-2 rounded-full cursor-pointer"
+                  <Button
+                    className=""
+                    variant="contained"
+                    color="success"
+                    sx={{
+                      fontSize: "1.2rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      borderRadius: "1rem",
+                    }}
                   >
-                    <p>ثبت نام</p>
-                    <div
-                      tabIndex={0}
-                      className="lg:group-hover:scale-105 group-focus-within:scale-105 group-focus-visible:bg-red-500 transition-transform duration-200"
-                    >
-                      <WestIcon fontSize="medium" />
-                    </div>
-                  </div>
+                    <Link to={"register/signup"}> ثبت نام</Link>
+                    <WestIcon fontSize="medium" />
+                  </Button>
                 </div>
                 <p className="text-subtle text-base">
                   همین الان بدون معطلی ۱۰۰ تتر پول نقد بگیر + ۴۰۰ تتر کوپن هدیه
@@ -172,7 +180,7 @@ const MainHome = () => {
           <img
             src="https://assets.staticimg.com/brisk-web/1.1.45/media/f8fcf8b7226c2cf4365e.png"
             alt=""
-            className="absolute hidden lg:inline-block  left-0 w-[340px] md:w-[766px] "
+            className="absolute hidden lg:inline-block  left-0 w-[340px] md:w-[766px] lg:opacity-40 xl:opacity-100 z-0  lg:blur xl:blur-none"
             loading="lazy"
             draggable={false}
           />
@@ -384,7 +392,7 @@ const MainHome = () => {
             <div className="text-center text-2xl font-bold">
               همین الان وارد دنیای کریپتو شو!
             </div>
-            <Botton link="/" title="همین الان ثبت نام کن!" />
+            <Botton link="/register/signup" title="همین الان ثبت نام کن!" />
           </div>
         </div>
       </section>
@@ -471,15 +479,19 @@ const SecurCard = ({
 const ShowCoinCard = ({
   title,
   hook,
+  className = "flex",
 }: {
   title: string;
   hook: OldMarket[];
+  className?: string;
 }) => {
   // const { pathname } = useLocation();
   // console.log(pathname);
 
   return (
-    <div className="bg-secondary flex flex-col gap-4 items-start justify-center rounded-xl   py-6  ">
+    <div
+      className={`bg-secondary  flex-col gap-4 items-start justify-center rounded-xl   py-6  ${className} `}
+    >
       <div className="inline-block border-r-4 border-green-600  text-xl font-medium mx-10 px-3">
         {title}
       </div>
@@ -489,7 +501,7 @@ const ShowCoinCard = ({
             <Link
               key={coin?.symbol}
               to={`/coin/${coin?.symbol}?baseAsset=${coin?.baseAsset}&name=${coin?.enName}`}
-              className="flex items-center justify-between  w-full px-10 py-4 dark:hover:bg-gray-800/60"
+              className="flex items-center justify-between  w-full px-10 py-4 dark:hover:bg-gray-800/60 "
             >
               <div className="flex items-center gap-3">
                 <img
@@ -499,9 +511,7 @@ const ShowCoinCard = ({
                   height={"36px"}
                   className=""
                   draggable="false"
-              
                   loading="lazy"
-
                 />
 
                 <div className="flex items-start flex-col justify-center">
@@ -509,12 +519,11 @@ const ShowCoinCard = ({
                   <p className="text-subtle">{coin?.faBaseAsset}</p>
                 </div>
               </div>
-              <div className="flex flex-col gap-2 items-end">
-                <h5 className="font-medium text-sm lg:text-base ">
-                  {" "}
+              <div className="flex flex-col gap-1 items-end">
+                <h5 className="font-medium text-sm lg:text-base text-nowrap">
                   {parseFloat(coin?.stats.lastPrice).toLocaleString("fa-IR", {
                     maximumFractionDigits: 2,
-                  })}{" "}
+                  })}
                   تومان
                 </h5>
                 <p

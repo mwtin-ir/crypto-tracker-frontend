@@ -29,7 +29,7 @@ export function CoinsProvider({ children }: { children: ReactNode }) {
       try {
         setLoading(true);
         const res = await axios.get<Market[]>(
-          "http://localhost:3120/api/markets"
+          "https://crypto-tracker-backend-xt56.onrender.com/api/markets"
         );
 
         setCoins(res.data);

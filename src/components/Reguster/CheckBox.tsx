@@ -19,6 +19,7 @@ export default function AgreementList({
       setAgreements({
         ...agreements,
         [name]: event.target.checked,
+        
       });
     };
 

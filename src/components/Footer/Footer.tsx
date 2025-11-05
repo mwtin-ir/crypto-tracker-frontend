@@ -26,7 +26,7 @@ function Footer() {
   }, []);
 
   return (
-    <footer className="container mx-auto px-16">
+    <footer className="  container mx-auto px-16  ">
       <div className="flex items-center justify-center lg:justify-start my-8  lg:my-12 ">
         <Link
           to="/"
@@ -35,7 +35,7 @@ function Footer() {
           Macoin
         </Link>
       </div>
-      <nav>
+      <nav className="">
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-nowrap">
           <FooterItem
             title="معامله"
@@ -70,7 +70,7 @@ function Footer() {
         </ul>
       </nav>
       <div
-        className="flex flex-col gap-4 lg:flex-row items-center justify-between border-t border-gray-300 mt-6 py-4
+        className="flex flex-col gap-4 lg:flex-row items-center justify-between border-t border-gray-300 mt-6 py-4 col-span-5
       "
       >
         <div className="flex flex-col lg:flex-row items-center lg:gap-4">

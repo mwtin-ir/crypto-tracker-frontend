@@ -1,7 +1,14 @@
-export function fnum(num:string | number | undefined):string{
+export function fnum(
+  num: string | number | undefined,
+  NanNum?: string | number | undefined
+): string {
   if (num == null) return "-";
-  return Number(num).toLocaleString("fa-IR" , {
-    minimumFractionDigits:0,
-    maximumFractionDigits:10
+
+  const value = Number(num);
+  const fallback = NanNum !== undefined ? Number(NanNum) : 0;
+
+  return (Number.isNaN(value) ? fallback : value).toLocaleString("fa-IR", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 10,
   });
 }

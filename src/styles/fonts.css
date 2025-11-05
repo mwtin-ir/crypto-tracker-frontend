@@ -197,6 +197,7 @@
 
 body, * {
     font-family: 'IRANSansX', 'Tahoma', 'Arial', sans-serif;
+    font-feature-settings: "ss01";
 }
 
 .persian-text {
